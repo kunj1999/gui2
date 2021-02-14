@@ -1,0 +1,3 @@
+# Ignore sql database information. 
+# Possible username and password for individual sql server
+sqlDBInfo.php
