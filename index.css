@@ -1,0 +1,44 @@
+html, body {
+    height: 100%;
+}
+
+/* Background image for the entire webpage */
+.bg {
+    background-image: url("mainBackground.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+/* Used to center anything */
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav {
+    margin-right: 0px;
+}
+
+/* Used to display sign in and sign up side by side */
+.auth {
+    display: inline-block;
+}
+
+li {
+    display: inline-block;
+}
+
+/* Styles the sign In form */
+.signInForm {
+    max-width: 250px;
+    margin-top: 15%;
+    background-color: #e3e5ed66;
+}
+
+/* styles username and password input boxes */
+input[type=text], input[type=password] {
+    width: 80%;
+    padding: 3%;
+}

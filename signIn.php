@@ -1,3 +1,7 @@
+<?php
+    // If the session already exists, redirect the user to proper webpage
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +22,7 @@
                         <!-- Insert website logo here -->
                         <span>Tutor Anywhere</span>
                     </a>
-                    <ul class="navbar-nav ml-auto bg-transparent auth">
+                    <ul class="navbar-nav ml-auto auth">
                         <li class="nav-item">
                             <a class="nav-link text-light" href="signIn.php">Sign In</a>
                         </li>
@@ -28,6 +32,18 @@
                     </ul>
 
                 </nav>
+            </div>
+
+            <div class="container">
+                <!-- Sign in form that will take input of username and password -->
+                <form class="signInForm text-center center ">
+                    <h5 class="mt-2 mb-4">Sign In</h5>
+                    <span class="text-danger"></span>
+                    <input type="text" class="mt-2 mb-2" name="username" placeholder="Username" required>
+                    <input type="password" class="mt-2 mb-2" name="passowrd" placeholder="Password" required>
+                    <button type="submit" class="btn-primary mt-2 mb-2"> Sign In</button> <br> <br>
+                    <span> Don't have an account? <a class="text-primary" href="signUp.php">Sign Up</a></span>
+                </form>
             </div>
 
         </div>
