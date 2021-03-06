@@ -32,13 +32,21 @@ li {
 
 /* Styles the sign In form */
 .signInForm {
-    max-width: 250px;
+    max-width: 400px;
     margin-top: 15%;
     background-color: #e3e5ed66;
 }
 
+.signUpForm {
+    margin-top: 8%;
+    background-color: #e3e5ed66;
+}
 /* styles username and password input boxes */
-input[type=text], input[type=password] {
+.inputBox {
     width: 80%;
     padding: 3%;
+}
+
+.signUpInputBox {
+    padding: 5px;
 }
