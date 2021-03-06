@@ -1,5 +1,23 @@
 <?php
     // If the session already exists, redirect the user to proper webpage
+    require_once "Debug.php";
+    require_once "userInDb.php";
+
+    $err = null;
+
+    if(isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST") {
+        $dataCap = $_POST;
+        if (user_authenticated($dataCap['username'], $dataCap['password'], $err)) {
+            unset($dataCap);
+            // redirect to Homepage
+        }
+
+        unset($dataCap);
+    }
+    echo logConsole($err);
+    $err = "";
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +38,7 @@
                 <nav class="navbar navbar-light col-md-12 col-sm-12">
                     <a class="navbar-brand" href="index.html">
                         <!-- Insert website logo here -->
-                        <span>Tutor Anywhere</span>
+                        <img src="logo.png">
                     </a>
                     <ul class="navbar-nav ml-auto auth">
                         <li class="nav-item">
@@ -36,11 +54,11 @@
 
             <div class="container">
                 <!-- Sign in form that will take input of username and password -->
-                <form class="signInForm text-center center ">
+                <form action="<?php echo $_SERVER['PHP_SELF']?>" class="signInForm text-center center" method="post">
                     <h5 class="mt-2 mb-4">Sign In</h5>
-                    <span class="text-danger"></span>
-                    <input type="text" class="mt-2 mb-2" name="username" placeholder="Username" required>
-                    <input type="password" class="mt-2 mb-2" name="passowrd" placeholder="Password" required>
+                    <span class="text-danger"><?php echo $err;?></span>
+                    <input type="email" class="mt-2 mb-2 inputbox" name="email" placeholder="email" required><br>
+                    <input type="password" class="mt-2 mb-2 inputbox" name="passowrd" placeholder="Password" required><br>
                     <button type="submit" class="btn-primary mt-2 mb-2"> Sign In</button> <br> <br>
                     <span> Don't have an account? <a class="text-primary" href="signUp.php">Sign Up</a></span>
                 </form>
@@ -52,7 +70,12 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <!-- Bootstrap Javascript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        <script>
 
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>
     </body>
 
 </html>

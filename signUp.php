@@ -20,7 +20,7 @@
                 <nav class="navbar navbar-light col-md-12 col-sm-12">
                     <a class="navbar-brand" href="index.html">
                         <!-- Insert website logo here -->
-                        <span>Tutor Anywhere</span>
+                        <img src="logo.png">
                     </a>
                     <ul class="navbar-nav ml-auto auth">
                         <li class="nav-item">
