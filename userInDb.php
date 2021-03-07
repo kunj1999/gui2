@@ -21,11 +21,19 @@ function user_authenticated($email, $password, &$errMessage) {
 
     // If the user does exists in the database
     if ($resultFromDB) {
-        $errMessage = "Something is wrong";
+
         // match the passowrd, if not matched return false with error message
-        // Store the useful info in the session superrglobal
-        $conn->close();
-        return true;
+        if ($resultFromDB['pass'] == $password) {
+
+            //Store session data
+            $conn->close();
+            return true;
+        } else {
+            $errMessage = "Username and password combination Invalid!";
+            $conn->close();
+            return false;
+        }
+
     } else {
         $conn->close();
         return false;
@@ -67,22 +75,20 @@ function user_registration($reqArr) {
         }
     }
 
+    // Form a query and add the user to database
     if(!addUser($conn, $username, $reqArr)) {
         $errMessage = "Server Internal Error!";
         $conn->close();
         return false;
     }
-    // Form a query and add the user to database
 
     // Return
+    return true;
 }
 
-$arr = array();
-$arr['First Name'] = 'Kunj';
-$arr['Last Name'] = 'Patel';
 $arr['password'] = "1234";
-$arr['Email'] = 'example@gmail.com';
-$arr['isTutor'] = 'no';
+$arr['Email'] = 'xample@gmail.com';
+$errmsg = "";
 
-user_registration($arr);
+var_dump(user_authenticated($arr['Email'], $arr['password'], $errmsg));
 ?>

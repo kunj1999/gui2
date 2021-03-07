@@ -22,11 +22,8 @@ function getUserRow($connhandle, $emailAdd, &$result){
         return false;
     }
 
-    $stmt->bind_result($result);
+    $result = $stmt->get_result()->fetch_assoc();
 
-    if($stmt->fetch() === false) {
-        return false;
-    }
     $stmt->reset();
     return true;
 }
@@ -40,45 +37,22 @@ function usernameExists($connhandle, $username) {
     if(!$stmt->execute()) {
         return false;
     }
-    $result = null;
+    $result = $stmt->get_result()->fetch_assoc();
 
-    $stmt->bind_result($result);
-
-    if($stmt->fetch() === false) {
-        return false;
-    }
     $stmt->reset();
     return $result;
 }
 
 function addUser($connhandle, $username, $infoArr){
-    if ($stmt = $connhandle->prepare("INSERT INTO user (username, email, pass, firstname, lastname, isTutor, subjects) VALUES (?, ?, ?, ?, ?, ?, ?)")){
-        echo "prepare return true";
-    } else {
-        echo "prepare return false";
-        return false;
-    }
-
-    $email = $infoArr['Email'];
-    $pass = $infoArr['password'];
-    $firstname = $infoArr['First Name'];
-    $lastname = $infoArr['Last Name'];
-    $isTutor = $infoArr['isTutor'];
-    $subject = "";
+    $stmt = $connhandle->prepare("INSERT INTO user (username, email, pass, firstname, lastname, isTutor, subjects) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     if ($infoArr['isTutor'] == 'yes') {
         $stmt->bind_param("sssssis", $username, $infoArr['Email'], $infoArr['password'], $infoArr['First Name'], $infoArr['Last Name'], $a = 1, $infoArr['subjects']);
     } else {
         $stmt->bind_param("sssssis", $username, $infoArr['Email'], $infoArr['password'], $infoArr['First Name'], $infoArr['Last Name'], $a = 0, "");
     }
-    
+
     if(!$stmt->execute()) {
-        return false;
-    }
-
-    $stmt->bind_result($result);
-
-    if($stmt->fetch() === false) {
         return false;
     }
 
