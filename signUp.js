@@ -1,4 +1,4 @@
-$(document).ready(function() 
+$(document).ready(function()
 {
 
     $("#yes, #no").change(function()
@@ -6,10 +6,12 @@ $(document).ready(function()
         if(this.value == "yes")
         {
             $("#tutor-settings").show();
+            $("#tutor-settings :input").prop('required', true);
         }
         else
         {
             $("#tutor-settings").hide();
+            $("#tutor-settings :input").prop('required', false);
         }
     });
 

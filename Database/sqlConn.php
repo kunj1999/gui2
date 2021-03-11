@@ -46,10 +46,26 @@ function usernameExists($connhandle, $username) {
 function addUser($connhandle, $username, $infoArr){
     $stmt = $connhandle->prepare("INSERT INTO user (username, email, pass, firstname, lastname, isTutor, subjects) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-    if ($infoArr['isTutor'] == 'yes') {
-        $stmt->bind_param("sssssis", $username, $infoArr['Email'], $infoArr['password'], $infoArr['First Name'], $infoArr['Last Name'], $a = 1, $infoArr['subjects']);
+    if ($infoArr['Tutor'] == 'yes') {
+        $a = 1;
+        $stmt->bind_param("sssssis", $username, $infoArr['Email'], $infoArr['password'], $infoArr['FirstName'], $infoArr['LastName'], $a, $infoArr['subjects']);
+
+        if(!$stmt->execute()) {
+            return false;
+        }
+        $stmt->reset();
+
+        $TutorInfo->days = strval($infoArr['day']);
+        $TutorInfo->start = strval($infoArr['startTime']);
+        $TutorInfo->end = strval($infoArr['endTime']);
+        $TutorInfo->zoom = strval($infoArr['ZoomLink']);
+
+        $stmt = $connhandle->prepare("UPDATE user SET avail = ? WHERE username=?");
+        
+        $jsonFormat = json_encode($TutorInfo);
+        $stmt->bind_param("ss", $jsonFormat, $username);
     } else {
-        $stmt->bind_param("sssssis", $username, $infoArr['Email'], $infoArr['password'], $infoArr['First Name'], $infoArr['Last Name'], $a = 0, "");
+        $stmt->bind_param("sssssis", $username, $infoArr['Email'], $infoArr['password'], $infoArr['FirstName'], $infoArr['LastName'], $a = 0, $b ="");
     }
 
     if(!$stmt->execute()) {

@@ -3,20 +3,18 @@
     require_once "Debug.php";
     require_once "userInDb.php";
 
-    $err = null;
+    $err = "";
 
     if(isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST") {
         $dataCap = $_POST;
-        if (user_authenticated($dataCap['username'], $dataCap['password'], $err)) {
-            unset($dataCap);
-            // redirect to Homepage
+
+        if (user_authenticated($dataCap['email'], $dataCap['password'], $err)) {
+            header("Location: Homepage/home.php");
+            die();
         }
 
         unset($dataCap);
     }
-    echo logConsole($err);
-    $err = "";
-
     
 ?>
 
@@ -25,7 +23,7 @@
 
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tutor Anywhere</title>
+        <title>E-Tutor</title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="stylesheet" href="index.css">
@@ -40,10 +38,13 @@
                         <!-- Insert website logo here -->
                         <img src="logo.png">
                     </a>
+
                     <ul class="navbar-nav ml-auto auth">
+                        <!-- Navigation to login page -->
                         <li class="nav-item">
                             <a class="nav-link text-light" href="signIn.php">Sign In</a>
                         </li>
+                        <!-- Navigation to Registration page -->
                         <li class="nav-item ml-2">
                             <a class="btn btn-primary" href="signUp.php" role:"button">Sign Up</a>
                         </li>
@@ -53,13 +54,15 @@
             </div>
 
             <div class="container">
-                <!-- Sign in form that will take input of username and password -->
-                <form action="<?php echo $_SERVER['PHP_SELF']?>" class="signInForm text-center center" method="post">
-                    <h5 class="mt-2 mb-4">Sign In</h5>
+                <!-- Sign in form that will take input of email and password -->
+                <form action="<?php echo $_SERVER['PHP_SELF']?>" class="signInForm text-center center pt-4 pb-4" method="post">
+                    <h5 class="mb-4">Sign In</h5>
                     <span class="text-danger"><?php echo $err;?></span>
                     <input type="email" class="mt-2 mb-2 inputbox" name="email" placeholder="email" required><br>
-                    <input type="password" class="mt-2 mb-2 inputbox" name="passowrd" placeholder="Password" required><br>
+                    <input type="password" class="mt-2 mb-2 inputbox" name="password" placeholder="Password" required><br>
                     <button type="submit" class="btn-primary mt-2 mb-2"> Sign In</button> <br> <br>
+
+                    <!-- Another link to navigate to registration page -->
                     <span> Don't have an account? <a class="text-primary" href="signUp.php">Sign Up</a></span>
                 </form>
             </div>

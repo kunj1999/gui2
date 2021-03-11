@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'Database/sqlConn.php';
+require_once 'Debug.php';
 
 // @param: email, password, errmessage(by reference)
 // @return: bool
@@ -18,7 +19,7 @@ function user_authenticated($email, $password, &$errMessage) {
     if (!getUserRow($conn, $email, $resultFromDB)) {
         $errMessage = "Server Internal Error!";
     }
-
+    echo logConsole($password);
     // If the user does exists in the database
     if ($resultFromDB) {
 
@@ -35,12 +36,14 @@ function user_authenticated($email, $password, &$errMessage) {
         }
 
     } else {
+        $errMessage = "Username and password combination Invalid!";
         $conn->close();
         return false;
     }
 }
 
-function user_registration($reqArr) {
+// @param: 
+function user_registration($reqArr, &$errMessage) {
 
     // Get the connection handle and check if any errors encountered
     $conn = connectToServer();
@@ -64,7 +67,7 @@ function user_registration($reqArr) {
     // Generate the random username and make sure that doesn't exist
     $username = "";
     while (1) {
-        $username = $reqArr['First Name'] . $reqArr['Last Name'] . strval(rand(1,5000));
+        $username = $reqArr['FirstName'] . $reqArr['LastName'] . strval(rand(1,5000));
         $response = usernameExists($conn, $username);
         if($response === false) {
             $errMessage = "Server Internal Error!";
@@ -86,9 +89,17 @@ function user_registration($reqArr) {
     return true;
 }
 
-$arr['password'] = "1234";
-$arr['Email'] = 'xample@gmail.com';
-$errmsg = "";
+// $test['Email'] = "a2@gmail.com";
+// $test['password'] = "1234";
+// $test['FirstName'] = "Kunj";
+// $test['LastName'] = "Patel";
+// $test['isTutor'] = "yes";
+// $test['subjects'] = "Discrete Math";
+// $test['day'] = "Monday";
+// $test['startTime'] = "15:30";
+// $test['endTime'] = "16:00";
+// $test['ZoomLink'] = "127.0.0.1";
 
-var_dump(user_authenticated($arr['Email'], $arr['password'], $errmsg));
+// $errm = "";
+// user_registration($test, $errm);
 ?>

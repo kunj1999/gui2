@@ -1,5 +1,19 @@
 <?php
     // If the session already exists, redirect the user to proper webpage
+    require_once 'Debug.php';
+    require_once 'userInDb.php';
+
+    $err = "";
+    
+
+    if(isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST") {
+        //echo logConsole($_POST);
+        if(user_registration($_POST, $err)){
+            //header("Location: Homepage/home.php");
+            //die();
+        }
+        unset($_POST);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +21,7 @@
 
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tutor Anywhere</title>
+        <title>E-Tutor</title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="stylesheet" href="index.css">
@@ -19,13 +33,15 @@
                 <!-- Nav bar containing website logo and sign in and sign up options -->
                 <nav class="navbar navbar-light col-md-12 col-sm-12">
                     <a class="navbar-brand" href="index.html">
-                        <!-- Insert website logo here -->
+                        <!-- Website Logo -->
                         <img src="logo.png">
                     </a>
                     <ul class="navbar-nav ml-auto auth">
+                        <!-- Navigation to Login page -->
                         <li class="nav-item">
                             <a class="nav-link text-light" href="signIn.php">Sign In</a>
                         </li>
+                        <!-- Navigation to registration Page -->
                         <li class="nav-item ml-2">
                             <a class="btn btn-primary" href="signUp.php" role:"button">Sign Up</a>
                         </li>
@@ -35,32 +51,40 @@
             </div>
 
             <div class="container">
-                <!-- Sign in form that will take input of username and password -->
-                <form class="signUpForm text-center center p-3">
+                <!-- Sign up Form -->
+                <form class="signUpForm text-center center p-3" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
                     <h5 class="mt-2 mb-4">Sign Up</h5>
-                    <span class="text-danger"></span>
+                    <!-- Error message if something goes wrong -->
+                    <span class="text-danger"><?php echo $err; ?></span> <br>
 
+                    <!-- Input boxes for first and last name -->
                     <label class= "mr-3 col-2">Name</label>
-                    <input type="text" class="mt-2 mb-2 w-25 signUpInputBox" name="First Name" placeholder="First Name" required>
-                    <input type="text" class="mt-2 mb-2 w-25 signUpInputBox" name="Last Name" placeholder="Last Name" required> <br>
+                    <input type="text" class="mt-2 mb-2 w-25 signUpInputBox" name="FirstName" placeholder="First Name" required>
+                    <input type="text" class="mt-2 mb-2 w-25 signUpInputBox" name="LastName" placeholder="Last Name" required> <br>
 
+                    <!-- Input box for entering email -->
                     <label class= "mr-3 col-2">Email</label>
                     <input type="email" class="mt-2 mb-2 w-50 signUpInputBox" name="Email" placeholder="Email" required><br>
 
+                    <!-- Password -->
                     <label class= "mr-3 col-2">Password</label>
                     <input type="password" class="mt-2 mb-2 w-50 signUpInputBox" name="password" placeholder="password" required><br>
 
+                    <!-- Radio button for selecting if a person signing up is a tutor -->
                     <span class="mr-3">Are you a Tutor?</span>
                     <input type="radio" id="yes" name="Tutor" value="yes"><label class="mr-2" for="yes">Yes</label>
                     <input type="radio" id="no" name="Tutor" value="no"><label for="no">No</label> <br>
 
                     <div id="tutor-settings">
-                        <label class= "mr-3 col-2" >List subjects you tutor</label>
+                        <!-- Subjects a person is interested in tutoring -->
+                        <label class= "mr-3 col-2">List subjects you tutor</label>
                         <input type="text" class="mt-2 mb-2 w-50 signUpInputBox" name="subjects"><br>
 
+                        <!-- Zoom link to attend the virtual session -->
                         <label class="mr-3 col-2"> Zoom Link </label>
                         <input type="url" class= "mt-2 mb-2 w-50 signUpInputBox" name="ZoomLink"><br>
 
+                        <!-- Entering the schedule: Day of the week, start and end time -->
                         <label class="mr-3 col-2"> Schedule </label><br>
                         <select class="col-2" id="day" name="day">
                             <option value="Monday">Monday</option>
@@ -73,8 +97,11 @@
                         <label class="mr-1">end</label><input type="time" class= "col-2" name="endTime"><br>
                     </div>
 
+                    <!-- Form submission  -->
                     <button type="submit" class="btn-primary mt-2 mb-2"> Sign Up</button> <br> <br>
-                    <span> Already have an account? <a class="text-primary" href="signUp.php">Sign In</a></span>
+
+                    <!-- Link to navigate to login page -->
+                    <span> Already have an account? <a class="text-primary" href="signIn.php">Sign In</a></span>
                 </form>
             </div>
 
@@ -86,6 +113,12 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
         <!-- Javascript -->
         <script src="signUp.js"></script>
+        <script>
+
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>
     </body>
 
 </html>
