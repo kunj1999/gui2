@@ -9,41 +9,52 @@
         <link rel="stylesheet" href="home.css">
     </head>
 
-    <body class="text-center">
-        <div class="bg">
+    <body>
 
-            <div class="container">
-                <!-- Nav bar containing website logo and sign in and sign up options -->
-                <nav class="navbar navbar-light col-md-12 col-sm-12">
-                    <a class="navbar-brand" href="index.html">
-                        <!-- Website Logo -->
-                        <img src="logo.png">
-                    </a>
-                    <ul class="navbar-nav ml-auto auth">
-                        <!-- Navigation to Login page -->
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="calendar.php">Calendar</a>
-                        </li>
-                        <!-- Navigation to registration Page -->
-                        <li class="nav-item ml-2">
-                            <a class="btn btn-primary" href="index.html" role:"button">Log out</a>
-                        </li>
-                    </ul>
+        <div>
 
-                </nav>
-            </div>
+            <!-- Nav bar containing website logo and sign in and sign up options -->
+            <nav class="navbar col-12">
+                
+                <a class="navbar-brand" href="index.html">
+                    <!-- Website Logo -->
+                    <img src="../logo.png" class="logoSize">
+                </a>
 
-            <div class="container text-center center p-3">
-                <img src="logo.png">
+                <!-- search bar embedded in nav bar -->
+                <form class="search ml-3">
+                    <input class="searchbar ml-2">
+                </form>
 
-                <h1>Welcome First Name</h1>
-                <h2>Looking for help?</h2>
-                <h2>Search from thousands of tutors</h2>
+                <ul class="navbar-nav ml-auto auth">
+                    <!-- Navigation to Login page -->
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="calendar.php">Calendar</a>
+                    </li>
+                    <!-- Navigation to registration Page -->
+                    <li class="nav-item">
+                        <a class="nav-link text-light ml-4" href="index.html">Log out</a>
+                    </li>
+                </ul>
 
-                <div>
+            </nav>
+
+            <!-- Main contents of page -->
+            <div class="container text-center center mt-5 p-3">
+                
+                <!--  Website logo -->
+                <img src="../logo.png">
+
+                <!-- Main page text -->
+                <h1 class="mt-5">Welcome First Name</h1>
+                <p class="mb-0 mt-5">Looking for help?</p>
+                <p class="mb-5">Search from thousands of tutors</p>
+
+                <!-- Search bar -->
+                <form class="search">
                     <input class="searchbar">
-                    <input class="searchbutton" type="button">
-                </div>
+                    <input class="searchbutton pl-4 pr-4" type="button" value="Search">
+                </form>
             </div>
 
         </div>
