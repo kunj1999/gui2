@@ -1,13 +1,21 @@
 <?php
     // If the session already exists, redirect the user to proper webpage
+    session_start();
+    if(isset($_SESSION['username'])) {
+        header("Location: Homepage/home.php");
+        die();
+    }
+
     require_once "Debug.php";
     require_once "userInDb.php";
 
     $err = "";
 
+    // If proceed to user authentication only if there is post request
     if(isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST") {
         $dataCap = $_POST;
 
+        // Check the email password against the database and respond accordingly
         if (user_authenticated($dataCap['email'], $dataCap['password'], $err)) {
             header("Location: Homepage/home.php");
             die();

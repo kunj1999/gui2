@@ -1,16 +1,23 @@
 <?php
     // If the session already exists, redirect the user to proper webpage
+    session_start();
+    if(isset($_SESSION['username'])) {
+        header("Location: Homepage/home.php");
+        die();
+    }
+
+
     require_once 'Debug.php';
     require_once 'userInDb.php';
 
     $err = "";
     
-
+    // When the form submission occurs, proceed to registring the user
     if(isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST") {
-        //echo logConsole($_POST);
+        echo logConsole(gettype($_POST['startTime']));
         if(user_registration($_POST, $err)){
-            //header("Location: Homepage/home.php");
-            //die();
+            header("Location: Homepage/home.php");
+            die();
         }
         unset($_POST);
     }

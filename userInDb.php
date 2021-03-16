@@ -27,6 +27,12 @@ function user_authenticated($email, $password, &$errMessage) {
         if ($resultFromDB['pass'] == $password) {
 
             //Store session data
+            session_start();
+            $_SESSION['username'] = $resultFromDB['username'];
+            $_SESSION['firstName'] = $resultFromDB['firstname'];
+            $_SESSION['lastName'] = $resultFromDB['lastname'];
+            $_SESSION['email'] = $email;
+
             $conn->close();
             return true;
         } else {
@@ -42,7 +48,8 @@ function user_authenticated($email, $password, &$errMessage) {
     }
 }
 
-// @param: 
+// @param: array containing the information from signup page, err message
+// @return; True on success, false otherwise
 function user_registration($reqArr, &$errMessage) {
 
     // Get the connection handle and check if any errors encountered
@@ -52,7 +59,7 @@ function user_registration($reqArr, &$errMessage) {
         return false;
     }
 
-    // Check if the user already exists
+    // Check if the user already exists with the same email
     $resultFromDB = null;
     if (!getUserRow($conn, $reqArr['Email'], $resultFromDB)) {
         $errMessage = "Server Internal Error!";
@@ -64,7 +71,7 @@ function user_registration($reqArr, &$errMessage) {
         return false;
     }
 
-    // Generate the random username and make sure that doesn't exist
+    // Generate the random username and make sure that doesn't exists in the database
     $username = "";
     while (1) {
         $username = $reqArr['FirstName'] . $reqArr['LastName'] . strval(rand(1,5000));
@@ -85,6 +92,13 @@ function user_registration($reqArr, &$errMessage) {
         return false;
     }
 
+    // store session data for later usage
+    session_start();
+    $_SESSION['username'] = $username;
+    $_SESSION['firstName'] = $reqArr['FirstName'];
+    $_SESSION['lastName'] = $reqArr['LastName'];
+    $_SESSION['email'] = $reqArr['Email'];
+
     // Return
     return true;
 }
@@ -93,13 +107,19 @@ function user_registration($reqArr, &$errMessage) {
 // $test['password'] = "1234";
 // $test['FirstName'] = "Kunj";
 // $test['LastName'] = "Patel";
-// $test['isTutor'] = "yes";
+// $test['Tutor'] = "yes";
 // $test['subjects'] = "Discrete Math";
 // $test['day'] = "Monday";
 // $test['startTime'] = "15:30";
 // $test['endTime'] = "16:00";
-// $test['ZoomLink'] = "127.0.0.1";
+// $test['zoomLink'] = "127.0.0.1";
 
 // $errm = "";
-// user_registration($test, $errm);
+// try{
+//     user_registration($test, $errm);
+// } catch(Exception $e){
+//     echo "exception: " . $e->getMessage() . "\n";
+// }
+
+
 ?>
