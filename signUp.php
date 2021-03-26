@@ -89,7 +89,7 @@
 
                         <!-- Zoom link to attend the virtual session -->
                         <label class="mr-3 col-2"> Zoom Link </label>
-                        <input type="url" class= "mt-2 mb-2 w-50 signUpInputBox" name="ZoomLink"><br>
+                        <input type="url" class= "mt-2 mb-2 w-50 signUpInputBox" name="zoomLink"><br>
 
                         <!-- Entering the schedule: Day of the week, start and end time -->
                         <label class="mr-3 col-2"> Schedule </label><br>
