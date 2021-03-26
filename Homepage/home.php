@@ -31,7 +31,7 @@
             <!-- Nav bar containing website logo and calendar and log out options -->
             <nav class="navbar col-12">
                 
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="home.php">
                     <!-- Website Logo -->
                     <img src="../logo.png" class="logoSize">
                 </a>
@@ -49,7 +49,7 @@
                     </li>
                     <!-- Logging out of the account -->
                     <li class="nav-item">
-                        <a class="nav-link text-light ml-4" href="logout.php">Log out</a>
+                        <a class="nav-link text-light ml-4" href="../logout.php">Log out</a>
                     </li>
                 </ul>
 
