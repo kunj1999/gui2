@@ -122,4 +122,29 @@ function generateTimeStamps($dayOfTheWeek) {
     }
     return $retVal;
 }
+
+// @param: Keyword entered by the user
+// @return: return tutor profiles that match the keyword
+// @purpose: it will search the database for keyword entered by the user
+function search_keyword_in_sql($key) {
+    $connhandle = connectToServer();
+    if ($connhandle->connect_errno) {
+        return NULL;
+    }
+
+    $stmt = $connhandle->prepare("SELECT firstname, lastname, day, startTime, endTime, subjects, username from user NATURAL JOIN avail WHERE (isTutor=1) AND (subjects LIKE ? OR lastname LIKE ? OR firstname LIKE ?)");
+    
+    $likeKey = "%".$key."%";
+
+    $stmt->bind_param("sss", $likeKey, $likeKey, $likeKey);
+
+    if(!$stmt->execute()) {
+        return NULL;
+    }
+    $result = $stmt->get_result()->fetch_all();
+    $stmt->reset();
+    $connhandle->close();
+    return $result;
+}
+
 ?>

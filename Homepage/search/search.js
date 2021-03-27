@@ -1,23 +1,27 @@
-$(document).ready(function()
-{
-    var error = false;
 
-    if(error == true)
-    {
-        displaySorryMessage("Einstein");
-    }
-    else
-    {
-        for(var i = 0; i < 20; i+= 1)
-        {
-            createSearchResult("Kunj Patel", "x, y, z", "Monday 2:00 - 3:00");
+function displaySearchResult(searchArr){
+
+    resultLen = searchArr.length;
+
+    if (resultLen) {
+        
+        for (i =0; i< resultLen; i++) {
+            profile = searchArr[i];
+            // Formate the name of the tutor
+            tutorName = profile[0] + " " + profile[1];
+
+            // https://stackoverflow.com/questions/29206453/best-way-to-convert-military-time-to-standard-time-in-javascript/29206663
+            time = profile[2] + " " + moment(profile[3], "HH:mm:ss").format("h:mm A") + " " + moment(profile[4], "HH:mm:ss").format("h:mm A");
+            // Call the function that will display the tutor proifles
+            createSearchResult(tutorName, profile[5], time, profile[6]);
         }
+        return;
     }
+    displaySorryMessage();
+}
 
-});
 
-
-function createSearchResult(name, subjects, time)
+function createSearchResult(tutorName, subjects, time, username)
 {
     var newR = $("<a></a>");
     newR.addClass("result");
@@ -31,7 +35,7 @@ function createSearchResult(name, subjects, time)
     
     newName = $("<p></p>");
     newName.addClass("resultName");
-    newName.append(name);
+    newName.append(tutorName);
 
     newSubjects = $("<p></p>");
     newSubjects.addClass("resultSubjects");
@@ -54,7 +58,7 @@ function createSearchResult(name, subjects, time)
 }
 
 
-function displaySorryMessage(search)
+function displaySorryMessage()
 {
     var message = $("<div></div>");
     message.addClass("noResults");
@@ -63,7 +67,7 @@ function displaySorryMessage(search)
     sorry.addClass("sorry");
     sorry.append("Sorry! :(");
 
-    var infoText = "Your search for\"" + search + "\" returned no results."; 
+    var infoText = "Your search for returned no results."; 
 
     var info = $("<p></p>");
     info.addClass("sorryInfo");
