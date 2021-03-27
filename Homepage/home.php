@@ -49,7 +49,7 @@
                     </li>
                     <!-- Logging out of the account -->
                     <li class="nav-item">
-                        <a class="nav-link text-light ml-4" href="../logout.php">Log out</a>
+                        <a class="nav-link text-light ml-4" href="logout.php">Log out</a>
                     </li>
                 </ul>
 

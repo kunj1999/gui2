@@ -43,7 +43,7 @@
                 </a>
 
                 <!-- search bar embedded in nav bar -->
-                <form class="search ml-3" action="." method="GET">
+                <form class="search ml-3" action="search.php" method="GET">
                     <input class="searchbar ml-2 rounded" name="s"/>
                     <button type="submit" class="btn bg-white" style="height: 40px;"><i class="fas fa-search"></i></button>
                 </form>
@@ -51,11 +51,11 @@
                 <ul class="navbar-nav ml-auto auth">
                     <!-- Navigation to calendar page -->
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="../../calendar.php">Calendar</a>
+                        <a class="nav-link text-light" href="../calendar.php">Calendar</a>
                     </li>
                     <!-- Logging out of the account -->
                     <li class="nav-item">
-                        <a class="nav-link text-light ml-4" href="../../logout.php">Log out</a>
+                        <a class="nav-link text-light ml-4" href="../logout.php">Log out</a>
                     </li>
                 </ul>
 

@@ -67,7 +67,7 @@ function displaySorryMessage()
     sorry.addClass("sorry");
     sorry.append("Sorry! :(");
 
-    var infoText = "Your search for returned no results."; 
+    var infoText = "Your search returned no results."; 
 
     var info = $("<p></p>");
     info.addClass("sorryInfo");
