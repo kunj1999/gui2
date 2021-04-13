@@ -51,17 +51,9 @@
                         <p class="tutorTime">Monday 2:00 - 3:00</p>
                     </div>
                     <div class="headerTabs">
-                        <button class="SessionsTab">Sessions</button>
-                        <button class="reviewsTab">Reviews</button>
+                        <button class="sessionsTab clickable">Sessions</button>
+                        <button class="reviewsTab clickable">Reviews</button>
                     </div>
-                </div>
-                <div class="sessionsPanel">
-                    <button class="session">TEXT</button>
-                    <button class="session">TEXT</button>
-                    <button class="session">TEXT</button>
-                    <button class="session">TEXT</button>
-                    <button class="session">TEXT</button>
-                    <button class="session">TEXT</button>
                 </div>
             </div>
 
@@ -71,6 +63,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <!-- Bootstrap Javascript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        <script src="tutorProfile.js"></script>
         <script>
             if (window.history.replaceState) {
                 window.history.replaceState(null, null, window.location.href);

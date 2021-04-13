@@ -89,13 +89,65 @@ li{
 
 .session{
     float: left;
-    width: 50%;
-    margin: 0px 0px;
-    padding: 0px 0px;
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px 0px;
     background-color: #d0d0d0;
     border: none;
     color: black;
     text-decoration: none;
+}
+
+.reviewsPanel{
+    float: left;
+    width: 100%;
+}
+
+.review{
+    margin-top: 5px;
+    background-color: #d0d0d0;
+    padding-bottom: 5px;
+}
+
+.reviewHeader{
+    float: left;
+    width: 100%;
+}
+
+.reviewerPic{
+    float: left;
+    margin: 10px;
+}
+.reviewerName{
+    font-size: 20px;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.reviewText{
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow-wrap: break-word;
+}
+
+.reviewTextEdit{
+    width: 100%;
+}
+
+.addReviewButton{
+    float: right;
+}
+
+.buttonBox{
+    display: inline-block;
+    width: 100%;
+}
+
+.buttonBox button{
+    float: right;
+    margin: 5px;
+    width: 90px;
 }
 
 .search{
