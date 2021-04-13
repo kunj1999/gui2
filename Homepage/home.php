@@ -45,7 +45,7 @@
                 <ul class="navbar-nav ml-auto auth">
                     <!-- Navigation to calendar page -->
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="calendar.php">Calendar</a>
+                        <a class="nav-link text-light" href="calendar/calendar.php">Calendar</a>
                     </li>
                     <!-- Logging out of the account -->
                     <li class="nav-item">

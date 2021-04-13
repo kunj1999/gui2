@@ -1,6 +1,7 @@
 <?php
 
 include "sqlDBInfo.php";
+include '../Debug.php';
 
 $serverName = "localhost";
 $dbName = "ETutor";
@@ -85,7 +86,7 @@ function addUser($connhandle, $username, $infoArr){
 
         //Generate time slots for next 60 days
         $stmt->reset();
-        $stmt = $connhandle->prepare("INSERT INTO registered (username, startTime, endTime, zoomLink) VALUES(?, ?, ?, ?)");
+        $stmt = $connhandle->prepare("INSERT INTO registered (username, startTime, endTime, zoomLink, tutorUsername) VALUES(?, ?, ?, ?, ?)");
 
         $timeSlots = generateTimeStamps($infoArr['day']);
 
@@ -93,7 +94,7 @@ function addUser($connhandle, $username, $infoArr){
             $startT = date("y-m-d H:i:s", strtotime($time. " " . $infoArr['startTime']));
             $endT = date("y-m-d H:i:s", strtotime($time. " " . $infoArr['endTime']));
 
-            $stmt->bind_param("ssss", $username, $startT, $endT, $infoArr['zoomLink']);
+            $stmt->bind_param("sssss", $username, $startT, $endT, $infoArr['zoomLink'], $username);
             if(!$stmt->execute()) {
                 return false;
             }
@@ -103,10 +104,6 @@ function addUser($connhandle, $username, $infoArr){
         // If the registering student, set isTutor = false
         $a = 0;
         $stmt->bind_param("sssssi", $username, $infoArr['Email'], $infoArr['password'], $infoArr['FirstName'], $infoArr['LastName'], $a);
-    }
-
-    if(!$stmt->execute()) {
-        return false;
     }
 
     return true;
@@ -147,4 +144,38 @@ function search_keyword_in_sql($key) {
     return $result;
 }
 
+// @param: username to search by in table
+// @return: time slots a user has added to their calendar
+function search_registration_table($user) {
+    $connhandle = connectToServer();
+    if ($connhandle->connect_errno) {
+        return NULL;
+    }
+
+    // Get all slots user has registered for
+    $stmt = $connhandle->prepare("SELECT id, startTime, endTime, zoomLink, tutorUsername from user NATURAL JOIN registered WHERE (username=?)");
+
+    $stmt->bind_param("s", $user);
+
+    if(!$stmt->execute()) {
+        return NULL;
+    }
+
+    $result = $stmt->get_result()->fetch_all();
+
+    $stmt->reset();
+    $stmt = $connhandle->prepare("SELECT firstname, lastname from user WHERE username=?");
+
+    // Get the firstname and lastname of tutor
+    for ($i = 0; $i < count($result); $i++) {
+        $stmt->bind_param("s", $result[$i][4]);
+        $stmt->execute();
+        $tempresult = $stmt->get_result()->fetch_all();
+        $result[$i][4] = $tempresult[0][0] . " ". $tempresult[0][1];
+    }
+
+    $stmt->reset();
+    $connhandle->close();
+    return $result;
+}
 ?>

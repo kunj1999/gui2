@@ -1,3 +1,19 @@
+<?php
+
+    require_once '../../Database/sqlConn.php';
+    require_once '../../Debug.php';
+
+
+    // If the user hasn't been authenticated, deny entry to this page
+    session_start();
+    if(!isset($_SESSION['username'])) {
+        header("Location: ../../signIn.php");
+        die();
+    }
+
+    $result = search_registration_table($_SESSION['username']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,13 +35,13 @@
             <!-- Nav bar containing website logo and calendar and log out options -->
             <nav class="navbar col-12">
                 
-                <a class="navbar-brand" href="home.php">
+                <a class="navbar-brand" href="../home.php">
                     <!-- Website Logo -->
                     <img src="../../logo.png" class="logoSize">
                 </a>
 
                 <!-- search bar embedded in nav bar -->
-                <form class="search ml-3" action="search/search.php" method="GET">
+                <form class="search ml-3" action="../search/search.php" method="GET">
                     <input class="searchbar ml-2 rounded" name="s"/>
                     <button type="submit" class="btn bg-white" style="height: 33px;"><i class="fas fa-search"></i></button>
                 </form>
@@ -37,7 +53,7 @@
                     </li>
                     <!-- Logging out of the account -->
                     <li class="nav-item">
-                        <a class="nav-link text-light ml-4" href="logout.php">Log out</a>
+                        <a class="nav-link text-light ml-4" href="../logout.php">Log out</a>
                     </li>
                 </ul>
 
@@ -45,7 +61,8 @@
 
         </div>
 
-        <div id='calendar'></div>
+        <!-- This is where the calendar will be generated -->
+        <div class="mt-2" id='calendar'></div>
 
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
          <!-- Jquery -->
@@ -57,7 +74,9 @@
 
         <script>
             $(document).ready(function() {
-                displayCalendar();
+                // Get the data from php and pass it to the function that will generate the calendar
+                var timeslots = <?php echo json_encode($result); ?>;
+                displayCalendar(timeslots);
             });
         </script>
     </body>
