@@ -4,11 +4,41 @@ html, body {
 
 /* Background image for the entire webpage */
 .bg {
-    background-image: url("mainBackground.png");
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("mainBackground.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
+}
+
+.jb{
+    margin-top: 20%;
+}
+
+/* if the website is being accessed from smaller screens we adjust the welcome message text to fit their screen */
+@media only screen and (max-width: 767px){
+    .greeting {
+        font-size: 30px;
+    }
+    .welcomeMsg{
+        font-size: 15px;
+    }
+    .navBtn{
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .greeting {
+        font-size: 68px;
+    }
+    .welcomeMsg{
+        font-size: 30px;
+    }
+    .navBtn{
+        display: none;
+    }
 }
 
 /* Used to center anything */
@@ -34,19 +64,21 @@ li {
 .signInForm {
     max-width: 400px;
     margin-top: 15%;
-    background-color: #e3e5ed66;
+    background-color: #ffffffff;
 }
 
 .signUpForm {
     margin-top: 8%;
-    background-color: #e3e5ed66;
+    background-color: #ffffffff;
 }
 /* styles username and password input boxes */
 .inputBox {
-    width: 80%;
-    padding: 3%;
+    border-radius: 5px;
+    border: 1px solid gray;
 }
 
 .signUpInputBox {
-    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 8px 8px;
 }

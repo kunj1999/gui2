@@ -32,86 +32,108 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     </head>
 
     <body class="text-center">
         <div class="bg">
             <div class="container">
                 <!-- Nav bar containing website logo and sign in and sign up options -->
-                <nav class="navbar navbar-light col-md-12 col-sm-12">
+                <!-- Code derived from  https://getbootstrap.com/docs/4.0/components/navbar/-->
+                <nav class="navbar navbar-expand-sm navbar-light bg-transparent">
                     <a class="navbar-brand" href="index.html">
-                        <!-- Website Logo -->
+                        <!-- Insert website logo here -->
                         <img src="logo.png">
                     </a>
-                    <ul class="navbar-nav ml-auto auth">
-                        <!-- Navigation to Login page -->
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="signIn.php">Sign In</a>
-                        </li>
-                        <!-- Navigation to registration Page -->
-                        <li class="nav-item ml-2">
-                            <a class="btn btn-primary" href="signUp.php" role:"button">Sign Up</a>
-                        </li>
-                    </ul>
 
+                    <button type="button" class="btn btn-navbar navBtn bg-light" data-toggle="collapse" data-target=".navbar-collapse">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarText">
+                      <ul class="navbar-nav ml-auto">
+                        <!-- Link to the sign in page -->
+                        <li class="nav-item active">
+                          <a class="nav-link text-light" href="signIn.php">Sign In</a>
+                        </li>
+                        <!-- Link to the sign up page -->
+                        <li class="nav-item">
+                          <a class="btn btn-primary nav-link text-light" href="signUp.php">Sign Up</a>
+                        </li>
+                      </ul>
+                      
+                    </div>
                 </nav>
+
+                <hr class="bg-white m-0"/>
             </div>
 
             <div class="container">
                 <!-- Sign up Form -->
-                <form class="signUpForm text-center center p-3" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-                    <h5 class="mt-2 mb-4">Sign Up</h5>
+                <form class="signUpForm col-sm-11 text-center center p-3 rounded" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+                    <h4 class="mt-2 mb-4 font-weight-bold">Sign Up</h4>
                     <!-- Error message if something goes wrong -->
                     <span class="text-danger"><?php echo $err; ?></span> <br>
 
                     <!-- Input boxes for first and last name -->
-                    <label class= "mr-3 col-2">Name</label>
-                    <input type="text" class="mt-2 mb-2 w-25 signUpInputBox" name="FirstName" placeholder="First Name" required>
-                    <input type="text" class="mt-2 mb-2 w-25 signUpInputBox" name="LastName" placeholder="Last Name" required> <br>
+                    <label class= "mr-3 col-12 col-sm-2">Name</label>
+                    <input type="text" class="mt-2 mb-2 col-sm-3 signUpInputBox" name="FirstName" placeholder="First Name" required>
+                    <input type="text" class="mt-2 mb-2 col-sm-3 signUpInputBox" name="LastName" placeholder="Last Name" required> <br>
 
                     <!-- Input box for entering email -->
-                    <label class= "mr-3 col-2">Email</label>
-                    <input type="email" class="mt-2 mb-2 w-50 signUpInputBox" name="Email" placeholder="Email" required><br>
+                    <label class= "mr-3 col-12 col-sm-2">Email</label>
+                    <input type="email" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="Email" placeholder="Email" required><br>
 
                     <!-- Password -->
-                    <label class= "mr-3 col-2">Password</label>
-                    <input type="password" class="mt-2 mb-2 w-50 signUpInputBox" name="password" placeholder="password" required><br>
+                    <label class= "mr-3 col-12 col-sm-2">Password</label>
+                    <input type="password" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="password" placeholder="password" required><br>
 
                     <!-- Radio button for selecting if a person signing up is a tutor -->
-                    <span class="mr-3">Are you a Tutor?</span>
-                    <input type="radio" id="yes" name="Tutor" value="yes"><label class="mr-2" for="yes">Yes</label>
-                    <input type="radio" id="no" name="Tutor" value="no"><label for="no">No</label> <br>
-
-                    <div id="tutor-settings">
+                    <div class="mt-3 mb-3">
+                        <span class="mr-3">Are you a Tutor?</span>
+                        <input type="radio" id="yes" name="Tutor" value="yes"><label class="mr-2" for="yes">Yes</label>
+                        <input type="radio" id="no" name="Tutor" value="no"><label for="no">No</label> <br>
+                    </div>
+                    <div id="tutor-settings text-center">
                         <!-- Subjects a person is interested in tutoring -->
-                        <label class= "mr-3 col-2">List subjects you tutor</label>
-                        <input type="text" class="mt-2 mb-2 w-50 signUpInputBox" name="subjects"><br>
+                        <label class= "mr-3 col-12 col-sm-2">Subject</label>
+                        <input type="text" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="subjects"><br>
 
                         <!-- Zoom link to attend the virtual session -->
-                        <label class="mr-3 col-2"> Zoom Link </label>
-                        <input type="url" class= "mt-2 mb-2 w-50 signUpInputBox" name="zoomLink"><br>
+                        <label class="mr-3 col-12 col-sm-2">Zoom Link</label>
+                        <input type="url" class= "mt-2 mb-2 col-sm-6 signUpInputBox" name="zoomLink"><br>
 
                         <!-- Entering the schedule: Day of the week, start and end time -->
-                        <label class="mr-3 col-2"> Schedule </label><br>
-                        <select class="col-2" id="day" name="day">
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                        </select>
-                        <label class="mr-1">start</label><input type="time" class= "col-2" name="startTime">
-                        <label class="mr-1">end</label><input type="time" class= "col-2" name="endTime"><br>
+                        <label class="mr-3 col-12 col-sm-3 mt-3 mb-3">Schedule</label><br>
+                        <div class="row text-right text-sm-center col-sm-12">
+                            <div class="col-sm-4 mb-2">
+                                <select class="col-10 col-sm-10 signUpInputBox h-100" id="day" name="day">
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-4 mb-2">
+                                <label class="mr-1">start</label><input type="time" class= "col-10 col-sm-8 signUpInputBox" name="startTime">
+                            </div>
+
+                            <div class="col-sm-4 mb-2">
+                                <label class="mr-1">end</label><input type="time" class= "col-10 col-sm-8 signUpInputBox" name="endTime"><br>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Form submission  -->
-                    <button type="submit" class="btn-primary mt-2 mb-2"> Sign Up</button> <br> <br>
+                    <button type="submit" class="btn-primary mt-3 mb-3 col-sm-5 signUpInputBox"> Sign Up</button> <br> <br>
 
                     <!-- Link to navigate to login page -->
                     <span> Already have an account? <a class="text-primary" href="signIn.php">Sign In</a></span>
                 </form>
             </div>
-
         </div>
 
         <!-- Jquery -->

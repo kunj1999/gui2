@@ -35,40 +35,50 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     </head>
 
     <body class="text-center">
         <div class="bg">
             <div class="container">
                 <!-- Nav bar containing website logo and sign in and sign up options -->
-                <nav class="navbar navbar-light col-md-12 col-sm-12">
+                <!-- Code derived from  https://getbootstrap.com/docs/4.0/components/navbar/-->
+                <nav class="navbar navbar-expand-sm navbar-light bg-transparent">
                     <a class="navbar-brand" href="index.html">
                         <!-- Insert website logo here -->
                         <img src="logo.png">
                     </a>
 
-                    <ul class="navbar-nav ml-auto auth">
-                        <!-- Navigation to login page -->
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="signIn.php">Sign In</a>
-                        </li>
-                        <!-- Navigation to Registration page -->
-                        <li class="nav-item ml-2">
-                            <a class="btn btn-primary" href="signUp.php" role:"button">Sign Up</a>
-                        </li>
-                    </ul>
+                    <button type="button" class="btn btn-navbar navBtn bg-light" data-toggle="collapse" data-target=".navbar-collapse">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
 
+                    <div class="collapse navbar-collapse" id="navbarText">
+                      <ul class="navbar-nav ml-auto">
+                        <!-- Link to the sign in page -->
+                        <li class="nav-item active">
+                          <a class="nav-link text-light" href="signIn.php">Sign In</a>
+                        </li>
+                        <!-- Link to the sign up page -->
+                        <li class="nav-item">
+                          <a class="btn btn-primary nav-link text-light" href="signUp.php">Sign Up</a>
+                        </li>
+                      </ul>
+                      
+                    </div>
                 </nav>
+
+                <hr class="bg-white m-0"/>
             </div>
 
             <div class="container">
                 <!-- Sign in form that will take input of email and password -->
-                <form action="<?php echo $_SERVER['PHP_SELF']?>" class="signInForm text-center center pt-4 pb-4" method="post">
-                    <h5 class="mb-4">Sign In</h5>
+                <form action="<?php echo $_SERVER['PHP_SELF']?>" class="signInForm text-center center pt-4 pb-4 rounded" method="post">
+                    <h4 class="mb-4 font-weight-bold">Sign In</h4>
                     <span class="text-danger"><?php echo $err;?></span>
-                    <input type="email" class="mt-2 mb-2 inputbox" name="email" placeholder="email" required><br>
-                    <input type="password" class="mt-2 mb-2 inputbox" name="password" placeholder="Password" required><br>
-                    <button type="submit" class="btn-primary mt-2 mb-2"> Sign In</button> <br> <br>
+                    <input type="email" class="form-control-lg mt-2 mb-2 col-10 col-sm-8 inputBox" name="email" placeholder="email" required><br>
+                    <input type="password" class="form-control-lg mt-2 mb-2 col-10 col-sm-8 inputBox" name="password" placeholder="Password" required><br>
+                    <button type="submit" class="form-control-lg btn-primary mt-2 mb-2 col-10 col-sm-8 inputBox"> Sign In</button> <br> <br>
 
                     <!-- Another link to navigate to registration page -->
                     <span> Don't have an account? <a class="text-primary" href="signUp.php">Sign Up</a></span>
