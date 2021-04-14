@@ -23,9 +23,9 @@ function displaySearchResult(searchArr){
 
 function createSearchResult(tutorName, subjects, time, username)
 {
-    var newR = $("<a></a>");
-    newR.addClass("result");
-    newR.attr("href", "../../index.html");
+    var newResult = $("<a></a>");
+    newResult.addClass("result");
+    newResult.attr("href", "../../index.html");
 
     newPic = $("<i></i>");
     newPic.addClass("resultPic fas fa-user fa-5x");
@@ -51,10 +51,10 @@ function createSearchResult(tutorName, subjects, time, username)
     newText.append(newSubjects);
     newText.append(newTime);
 
-    newR.append(newPic);
-    newR.append(newText);
+    newResult.append(newPic);
+    newResult.append(newText);
 
-    $(".container").append(newR);
+    $(".container").append(newResult);
 }
 
 
