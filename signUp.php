@@ -94,7 +94,7 @@
                         <input type="radio" id="yes" name="Tutor" value="yes"><label class="mr-2" for="yes">Yes</label>
                         <input type="radio" id="no" name="Tutor" value="no"><label for="no">No</label> <br>
                     </div>
-                    <div id="tutor-settings text-center">
+                    <div id="tutor-settings" class="text-center">
                         <!-- Subjects a person is interested in tutoring -->
                         <label class= "mr-3 col-12 col-sm-2">Subject</label>
                         <input type="text" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="subjects"><br>
