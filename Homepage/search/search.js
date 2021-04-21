@@ -28,10 +28,10 @@ function createSearchResult(tutorName, subjects, time, username)
     newResult.attr("href", "../../index.html");
 
     newPic = $("<i></i>");
-    newPic.addClass("resultPic fas fa-user fa-5x");
+    newPic.addClass("resultPic fas fa-user fa-7x");
 
     newText = $("<div></div>");
-    newText.addClass("resultText");
+    newText.addClass("resultText ml-0 ml-sm-3");
     
     newName = $("<p></p>");
     newName.addClass("resultName");
@@ -46,6 +46,16 @@ function createSearchResult(tutorName, subjects, time, username)
     newTime.addClass("resultTime");
     newTime.append("Time: ")
     newTime.append(time);
+
+    // We give every profile 4 start until we have the feature up and running
+    // https://www.w3schools.com/howto/howto_css_star_rating.asp
+    avgRating = $("<i></i>")
+    avgRating.addClass("fas fa-star")
+    for(i=0; i<4; i++){
+        newText.append(avgRating.clone());
+    }
+    avgRating.removeClass("fas").addClass("far");
+    newText.append(avgRating.clone());
 
     newText.append(newName);
     newText.append(newSubjects);

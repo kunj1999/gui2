@@ -1,29 +1,18 @@
 html{
     height: 100%;
+    position: relative;
 }
 
 body{
     height: 100%;
+    position:relative;
     background-size: cover;
     background-repeat: no-repeat;
-    background: linear-gradient(to bottom right, #000000 0%, #dddddd 100%);
-}
-
-.logoSize{
-    width: 143px;
-    height: 38px;
-}
-
-.auth{
-    display: inline-block;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)), url("home.jpg");
 }
 
 li{
     display: inline-block;
-}
-
-.navbar{
-    background-color: #282828;
 }
 
 .container{
@@ -32,11 +21,6 @@ li{
 
 .search{
     display: inline-block;
-}
-
-.searchbar{
-    width: 220px;
-    height: 33px;
 }
 
 .searchbutton{
@@ -53,4 +37,12 @@ li{
 
 h1{
     font-size: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    min-height: 64px;
+    background-color: #282828;
 }
