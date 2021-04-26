@@ -3,6 +3,8 @@
     require_once '../../Debug.php';
     require_once '../../Database/sqlConn.php';
 
+    echo logConsole($_SERVER['DOCUMENT_ROOT']);
+
 
     // If the user hasn't been authenticated, deny entry to this page
     session_start();

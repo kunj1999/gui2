@@ -36,7 +36,7 @@ function ReviewAjax(){
 
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1/Homepage/profile/review.php",
+            url: "/Homepage/profile/review.php",
             data: formdata,
         }).done(function (data) {
             console.log(data);
@@ -189,7 +189,7 @@ function AddtoCalendar_Ajax(ele){
 
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1/Homepage/profile/session.php",
+        url: "/Homepage/profile/session.php",
         data: formdata,
     }).done(function (data) {
         console.log(data);

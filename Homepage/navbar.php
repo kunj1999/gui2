@@ -3,9 +3,9 @@
 
     <body>
         <nav class="navbar navbar-expand-sm col-12 pt-0">
-                <a class="navbar-brand" href="http://127.0.0.1/Homepage/home.php">
+                <a class="navbar-brand" href="/Homepage/home.php">
                     <!-- Website Logo -->
-                    <img src="http://127.0.0.1/logo.png" class="logoSize">
+                    <img src="/logo.png" class="logoSize">
                 </a>
                 
                 <button type="button" class="btn btn-navbar navBtn bg-light d-inline-block d-sm-none mt-2" data-toggle="collapse" data-target=".navbar-collapse">
@@ -14,7 +14,7 @@
                 
                 <!-- search bar embedded in nav bar -->
                 <div class="collapse navbar-collapse text-center" id="navbarText">
-                    <form class="search ml-3 mt-1" action="http://127.0.0.1/Homepage/search/search.php" method="GET">
+                    <form class="search ml-3 mt-1" action="/Homepage/search/search.php" method="GET">
                         <div class="input-group">
                             <input class="searchbar ml-2 rounded-left" name="s" required/>
                             <div class="input-group-append">
@@ -27,11 +27,11 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Navigation to calendar page -->
                         <li class="nav-item active">
-                            <a class="nav-link text-light" href="http://127.0.0.1/Homepage/calendar/calendar.php">Calendar</a>
+                            <a class="nav-link text-light" href="/Homepage/calendar/calendar.php">Calendar</a>
                         </li>
                         <!-- Logging out of the account -->
                         <li class="nav-item">
-                            <a class="nav-link text-light ml-sm-4" href="http://127.0.0.1/Homepage/logout.php">Log out</a>
+                            <a class="nav-link text-light ml-sm-4" href="/Homepage/logout.php">Log out</a>
                         </li>
                     </ul>
                 </div>
