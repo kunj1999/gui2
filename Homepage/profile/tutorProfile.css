@@ -1,0 +1,146 @@
+html{
+    height: 100%;
+}
+
+body{
+    background-color: white;
+}
+
+li{
+    display: inline-block;
+}
+
+.header{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0px;
+    padding: 7px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    background-color: #d0d0d0;
+    color: black;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.headerPic{
+    margin-top: 5px;
+    margin-left: 10px;
+    float: left;
+}
+
+.headerText{
+    float: left;
+    margin-left: 20px;
+}
+
+.headerText p{
+    margin-bottom: 3px;
+    font-size: 16px;
+}
+
+.tutorName{
+    font-size: 30px !important;
+    font-weight: bold;
+}
+
+.tutorSubjects{
+    margin-bottom: 5px;
+}
+
+.reviewsPanel{
+    float: left;
+    width: 100%;
+}
+
+.review{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 14px;
+    padding: 7px 7px;
+    color: black;
+    border: none;
+}
+
+.reviewHeader{
+    float: left;
+    width: 100%;
+}
+
+.reviewerPic{
+    float: left;
+    margin: 10px;
+}
+.reviewerName{
+    font-size: 20px;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.reviewText{
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow-wrap: break-word;
+}
+
+.reviewTextEdit{
+    width: 100%;
+}
+
+.addReviewButton{
+    float: right;
+}
+
+.tabs{
+    color: black;
+    text-decoration: none;
+    border: 1px solid gray;
+    padding: 8px 8px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.tabs:hover{
+    background-color: gray;
+}
+
+.pTab{
+    background-color: #d0d0d0 !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+}
+
+#About, #Sessions, #Reviews {
+    display: block;
+    overflow-y: scroll;
+    max-height: 60vh;
+}
+
+#About h5{
+    font-weight: bold;
+    margin-left: 0px;
+    padding-left: 0px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#About p{
+    margin-left: 0px;
+    padding-left: 0px;
+    font-size: 13px;
+    text-align:center;
+}
+
+#postReview{
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.addCalendar{
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 8px 8px;
+}

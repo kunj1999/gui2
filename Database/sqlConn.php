@@ -1,7 +1,6 @@
 <?php
 
 include "sqlDBInfo.php";
-include '../Debug.php';
 
 $serverName = "localhost";
 $dbName = "ETutor";
@@ -58,14 +57,15 @@ function usernameExists($connhandle, $username) {
 function addUser($connhandle, $username, $infoArr){
 
     // Every user will have this row containing basic information
-    $stmt = $connhandle->prepare("INSERT INTO user (username, email, pass, firstname, lastname, isTutor) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $connhandle->prepare("INSERT INTO user (username, email, pass, firstname, lastname, isTutor, review) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     // Check if we are registering a tutor or a student
     if ($infoArr['Tutor'] == 'yes') {
 
         // If the tutor, then set isTutor = true
         $a = 1;
-        $stmt->bind_param("sssssi", $username, $infoArr['Email'], $infoArr['password'], $infoArr['FirstName'], $infoArr['LastName'], $a);
+        $b = "[]";
+        $stmt->bind_param("sssssis", $username, $infoArr['Email'], $infoArr['password'], $infoArr['FirstName'], $infoArr['LastName'], $a, $b);
 
         if(!$stmt->execute()) {
             return false;
@@ -181,4 +181,84 @@ function search_registration_table($user) {
     $connhandle->close();
     return $result;
 }
+
+function addReview($username, $comments, $rating) {
+    $connhandle = connectToServer();
+    if ($connhandle->connect_errno) {
+        return NULL;
+    }
+
+    $myJSON->comments = $comments;
+    $myJSON->rating = $rating;
+
+    $jsonEncoded = json_encode($myJSON);
+    
+    $stmt = $connhandle->prepare("UPDATE user SET review = JSON_ARRAY_APPEND(review, '$', CAST('$jsonEncoded' AS JSON)) WHERE username=?");
+
+    $stmt->bind_param("s", $username);
+
+    if(!$stmt->execute()) {
+        return NULL;
+    }
+
+    $stmt->reset();
+    $connhandle->close();
+}
+
+function tutorPublicProfile($username) {
+    $connhandle = connectToServer();
+    if ($connhandle->connect_errno) {
+        return NULL;
+    }
+
+    $stmt = $connhandle->prepare("SELECT firstname, lastname, review, subjects from user NATURAL JOIN avail WHERE (isTutor=1) AND username=?");
+
+    $stmt->bind_param("s", $username);
+
+    if(!$stmt->execute()) {
+        return NULL;
+    }
+
+    $result = $stmt->get_result()->fetch_all();
+
+    $stmt->reset();
+
+    $stmt = $connhandle->prepare("SELECT startTime, endTime, zoomLink from registered WHERE username=? and tutorUsername=?");
+    $stmt->bind_param("ss", $username, $username);
+
+    if(!$stmt->execute()) {
+        return NULL;
+    }
+
+    $sessions = $stmt->get_result()->fetch_all();
+
+    for ($i=0; $i < count($sessions); $i++) {
+        array_push($sessions[$i], $result[0][3]);
+    }
+
+    $connhandle->close();
+
+    return [$result, $sessions];
+}
+
+function addSession($username, $startTime, $endTime, $zm, $tutorUsername){
+    $connhandle = connectToServer();
+    if ($connhandle->connect_errno) {
+        return NULL;
+    }
+
+    $stmt = $connhandle->prepare("INSERT INTO registered (username, startTime, endTime, zoomLink, tutorUsername) VALUES(?, ?, ?, ?, ?)");
+
+    $startT = date("y-m-d H:i:s", strtotime($startTime));
+    $endT = date("y-m-d H:i:s", strtotime($endTime));
+
+    $stmt->bind_param('sssss', $username, $startT, $endT, $zm, $tutorUsername);
+
+    if(!$stmt->execute()) {
+        return NULL;
+    }
+
+    $connhandle->close();
+}
+
 ?>

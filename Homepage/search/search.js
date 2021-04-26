@@ -25,7 +25,7 @@ function createSearchResult(tutorName, subjects, time, username)
 {
     var newResult = $("<a></a>");
     newResult.addClass("result");
-    newResult.attr("href", "../../index.html");
+    newResult.attr("href", "http://127.0.0.1/Homepage/profile/tutorProfile.php?" + username);
 
     newPic = $("<i></i>");
     newPic.addClass("resultPic fas fa-user fa-7x");
