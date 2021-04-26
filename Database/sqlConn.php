@@ -103,7 +103,8 @@ function addUser($connhandle, $username, $infoArr){
     } else {
         // If the registering student, set isTutor = false
         $a = 0;
-        $stmt->bind_param("sssssi", $username, $infoArr['Email'], $infoArr['password'], $infoArr['FirstName'], $infoArr['LastName'], $a);
+        $b = "[]";
+        $stmt->bind_param("sssssis", $username, $infoArr['Email'], $infoArr['password'], $infoArr['FirstName'], $infoArr['LastName'], $a, $b);
         if(!$stmt->execute()) {
             return false;
         }

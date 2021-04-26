@@ -86,7 +86,7 @@
 
                     <!-- Password -->
                     <label class= "mr-3 col-12 col-sm-2">Password</label>
-                    <input type="password" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="password" placeholder="password" required><br>
+                    <input type="password" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="password" placeholder="Password" required><br>
 
                     <!-- Radio button for selecting if a person signing up is a tutor -->
                     <div class="mt-3 mb-3">
@@ -94,7 +94,7 @@
                         <input type="radio" id="yes" name="Tutor" value="yes"><label class="mr-2" for="yes">Yes</label>
                         <input type="radio" id="no" name="Tutor" value="no"><label for="no">No</label> <br>
                     </div>
-                    <div id="tutor-settings" class="text-center">
+                    <div id="tutor-settings" class="text-center" style="display:none;">
                         <!-- Subjects a person is interested in tutoring -->
                         <label class= "mr-3 col-12 col-sm-2">Subject</label>
                         <input type="text" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="subjects"><br>

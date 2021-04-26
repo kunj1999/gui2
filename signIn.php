@@ -76,7 +76,7 @@
                 <form action="<?php echo $_SERVER['PHP_SELF']?>" class="signInForm text-center center pt-4 pb-4 rounded" method="post">
                     <h4 class="mb-4 font-weight-bold">Sign In</h4>
                     <span class="text-danger"><?php echo $err;?></span>
-                    <input type="email" class="form-control-lg mt-2 mb-2 col-10 col-sm-8 inputBox" name="email" placeholder="email" required><br>
+                    <input type="email" class="form-control-lg mt-2 mb-2 col-10 col-sm-8 inputBox" name="email" placeholder="Email" required><br>
                     <input type="password" class="form-control-lg mt-2 mb-2 col-10 col-sm-8 inputBox" name="password" placeholder="Password" required><br>
                     <button type="submit" class="form-control-lg btn-primary mt-2 mb-2 col-10 col-sm-8 inputBox"> Sign In</button> <br> <br>
 
