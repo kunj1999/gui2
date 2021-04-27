@@ -1,3 +1,13 @@
+<!-- 
+    File: signUp.php
+    E-Tutor
+    Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+    Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+    Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+    Last Modified: 04/26/2021
+ -->
+
 <?php
     // If the session already exists, redirect the user to proper webpage
     session_start();
@@ -10,15 +20,20 @@
     require_once 'Debug.php';
     require_once 'userInDb.php';
 
+    // Will hold error message
     $err = "";
     
     // When the form submission occurs, proceed to registring the user
     if(isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST") {
         echo logConsole(gettype($_POST['startTime']));
+
+        // If the user registration successful, redirect user to proper webpage
         if(user_registration($_POST, $err)){
             header("Location: Homepage/home.php");
             die();
         }
+
+        // free up the post request data
         unset($_POST);
     }
 ?>
@@ -38,6 +53,7 @@
     <body class="text-center">
         <div class="bg">
             <div class="container">
+
                 <!-- Nav bar containing website logo and sign in and sign up options -->
                 <!-- Code derived from  https://getbootstrap.com/docs/4.0/components/navbar/-->
                 <nav class="navbar navbar-expand-sm navbar-light bg-transparent">
@@ -46,16 +62,19 @@
                         <img src="logo.png">
                     </a>
 
+                    <!-- Navbar button that will be displyed when the webpage is accessed from smaller screen -->
                     <button type="button" class="btn btn-navbar navBtn bg-light" data-toggle="collapse" data-target=".navbar-collapse">
                         <i class="fas fa-bars fa-2x"></i>
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarText">
                       <ul class="navbar-nav ml-auto">
+
                         <!-- Link to the sign in page -->
                         <li class="nav-item active">
                           <a class="nav-link text-light" href="signIn.php">Sign In</a>
                         </li>
+
                         <!-- Link to the sign up page -->
                         <li class="nav-item">
                           <a class="btn btn-primary nav-link text-light" href="signUp.php">Sign Up</a>
@@ -72,6 +91,7 @@
                 <!-- Sign up Form -->
                 <form class="signUpForm col-sm-11 text-center center p-3 rounded" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
                     <h4 class="mt-2 mb-4 font-weight-bold">Sign Up</h4>
+
                     <!-- Error message if something goes wrong -->
                     <span class="text-danger"><?php echo $err; ?></span> <br>
 
@@ -94,7 +114,9 @@
                         <input type="radio" id="yes" name="Tutor" value="yes"><label class="mr-2" for="yes">Yes</label>
                         <input type="radio" id="no" name="Tutor" value="no"><label for="no">No</label> <br>
                     </div>
+
                     <div id="tutor-settings" class="text-center" style="display:none;">
+
                         <!-- Subjects a person is interested in tutoring -->
                         <label class= "mr-3 col-12 col-sm-2">Subject</label>
                         <input type="text" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="subjects"><br>
@@ -103,7 +125,7 @@
                         <label class="mr-3 col-12 col-sm-2">Zoom Link</label>
                         <input type="url" class= "mt-2 mb-2 col-sm-6 signUpInputBox" name="zoomLink"><br>
 
-                        <!-- Entering the schedule: Day of the week, start and end time -->
+                        <!-- Entering the schedule: Day of the week -->
                         <label class="mr-3 col-12 col-sm-3 mt-3 mb-3">Schedule</label><br>
                         <div class="row text-right text-sm-center col-sm-12">
                             <div class="col-sm-4 mb-2">
@@ -116,10 +138,12 @@
                                 </select>
                             </div>
 
+                            <!-- Input start time -->
                             <div class="col-sm-4 mb-2">
                                 <label class="mr-1">start</label><input type="time" class= "col-10 col-sm-8 signUpInputBox" name="startTime">
                             </div>
 
+                            <!-- Input end time -->
                             <div class="col-sm-4 mb-2">
                                 <label class="mr-1">end</label><input type="time" class= "col-10 col-sm-8 signUpInputBox" name="endTime"><br>
                             </div>
@@ -143,7 +167,7 @@
         <!-- Javascript -->
         <script src="signUp.js"></script>
         <script>
-
+            // prevent sign up form from submission on reload
             if (window.history.replaceState) {
                 window.history.replaceState(null, null, window.location.href);
             }

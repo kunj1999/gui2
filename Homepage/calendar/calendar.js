@@ -1,3 +1,15 @@
+// File: /Homepage/calendar/calendar.js
+// E-Tutor
+// Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+// Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+// Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+// Last Modified: 04/26/2021
+
+
+// @param: sessions from registered table
+// @return: (none)
+// purpose: display calendar with timeslots from databse
 function displayCalendar(timeSlots) {
     // Get the calendar div
     var calendarEl = document.getElementById('calendar');
@@ -8,6 +20,7 @@ function displayCalendar(timeSlots) {
     events: formatSlots(timeSlots),
     eventClick: function(info) {
         info.jsEvent.preventDefault();
+        // When the user clicks time slot, open new webpage with zoom link
         window.open(info.event._def.extendedProps.notes, "_blank");
     },
     height: "90%"});
@@ -16,6 +29,9 @@ function displayCalendar(timeSlots) {
     calendar.render();
 }
 
+// @param: Array of registered sessions
+// @return: Array containing well formated timeslots
+// purpose: Format timeslots based on api documentation
 function formatSlots(registered) {
     var retval = new Array();
 

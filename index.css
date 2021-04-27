@@ -1,3 +1,14 @@
+/*
+    File: index.css
+    E-Tutor
+    Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+    Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+    Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+    Last Modified: 04/26/2021
+*/
+
+/* Wepage fitting full screen of the browser*/
 html, body {
     height: 100%;
 }
@@ -12,6 +23,7 @@ html, body {
     min-height: 100%;
 }
 
+/* Jumbotron styling */
 .jb{
     margin-top: 20%;
 }
@@ -29,6 +41,7 @@ html, body {
     }
 }
 
+/* If the webpage is accesed with screens bigger than mobile, we adjust styling accordingly */
 @media only screen and (min-width: 768px){
     .greeting {
         font-size: 68px;
@@ -47,6 +60,7 @@ html, body {
     margin-right: auto;
 }
 
+/* Navigation bar styling */
 nav {
     margin-right: 0px;
 }
@@ -67,16 +81,19 @@ li {
     background-color: #ffffffff;
 }
 
+/* sign up form styling */
 .signUpForm {
     margin-top: 8%;
     background-color: #ffffffff;
 }
+
 /* styles username and password input boxes */
 .inputBox {
     border-radius: 5px;
     border: 1px solid gray;
 }
 
+/* Styles sign up input boxes */
 .signUpInputBox {
     border-radius: 5px;
     border: 1px solid gray;

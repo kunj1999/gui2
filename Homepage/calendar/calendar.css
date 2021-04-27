@@ -1,4 +1,13 @@
-/* overide the background color to make calendar look better */
+/*
+    File: /Homepage/calendar/calendar.css
+    E-Tutor
+    Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+    Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+    Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+    Last Modified: 04/26/2021
+*/
+
 html, body{
     height: 100%;
 }

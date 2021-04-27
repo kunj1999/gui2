@@ -1,16 +1,30 @@
+/* 
+    File: /Homepage/navbar.css
+    E-Tutor
+    Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+    Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+    Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+    Last Modified: 04/26/2021
+*/
+
+/* Styles navigation button the will appear when accessed on smaller screens*/
 .navBtn{
     max-height: 45px;
 }
 
+/* Style search bar on the navigation bar */
 .searchbar{
     width: 220px;
     height: 33px;
 }
 
+/* Styling for navigation bar */
 .navbar{
     background-color: #282828 !important;
 }
 
+/* ETutor logo style */
 .logoSize{
     width: 143px;
     height: 38px;

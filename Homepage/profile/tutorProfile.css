@@ -1,3 +1,14 @@
+/*
+    File: /Homepage/profile/tutorProfile.css
+    E-Tutor
+    Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+    Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+    Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+    Last Modified: 04/26/2021
+*/
+
+/* Style webpage frame */
 html{
     height: 100%;
 }
@@ -10,6 +21,7 @@ li{
     display: inline-block;
 }
 
+/* Style header of the profile. This is where the profile page, name and location shows up */
 .header{
     display: inline-block;
     width: 100%;
@@ -25,6 +37,7 @@ li{
     border-bottom-right-radius: 0px;
 }
 
+/* Styles profile picture */
 .headerPic{
     margin-top: 5px;
     margin-left: 10px;
@@ -41,20 +54,19 @@ li{
     font-size: 16px;
 }
 
+/* style tutor name */
 .tutorName{
     font-size: 30px !important;
     font-weight: bold;
 }
 
-.tutorSubjects{
-    margin-bottom: 5px;
-}
-
+/* style panel that will show user reviews */
 .reviewsPanel{
     float: left;
     width: 100%;
 }
 
+/* Style individual review */
 .review{
     display: inline-block;
     width: 100%;
@@ -86,14 +98,7 @@ li{
     overflow-wrap: break-word;
 }
 
-.reviewTextEdit{
-    width: 100%;
-}
-
-.addReviewButton{
-    float: right;
-}
-
+/* Style tabs of profile panel */
 .tabs{
     color: black;
     text-decoration: none;
@@ -103,6 +108,7 @@ li{
     margin-right: 0px;
 }
 
+/* Change style when user hovering */
 .tabs:hover{
     background-color: gray;
 }
@@ -134,11 +140,13 @@ li{
     text-align:center;
 }
 
+/* style post button for adding new review */
 #postReview{
     border: 1px solid gray;
     border-radius: 5px;
 }
 
+/* style add to calendar button under session tab */
 .addCalendar{
     border-radius: 5px;
     border: 1px solid gray;

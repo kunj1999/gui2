@@ -1,3 +1,13 @@
+<!-- 
+    File: index.html
+    E-Tutor
+    Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+    Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+    Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+    Last Modified: 04/26/2021
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +23,7 @@
     <body class="text-center">
         <div class="bg">
             <div class="container h-100">
+
                 <!-- Nav bar containing website logo and sign in and sign up options -->
                 <!-- Code derived from  https://getbootstrap.com/docs/4.0/components/navbar/-->
                 <nav class="navbar navbar-expand-sm navbar-light bg-transparent">
@@ -20,16 +31,21 @@
                         <!-- Insert website logo here -->
                         <img src="logo.png">
                     </a>
-
+                    
+                    <!-- Navbar button that will be displyed when the webpage is accessed from smaller screen -->
                     <button type="button" class="btn btn-navbar navBtn bg-light" data-toggle="collapse" data-target=".navbar-collapse">
                         <i class="fas fa-bars fa-2x"></i>
                     </button>
-
+                    
                     <div class="collapse navbar-collapse" id="navbarText">
                       <ul class="navbar-nav ml-auto">
+
+                        <!-- Link to redirect user to Sign In page -->
                         <li class="nav-item active">
                           <a class="nav-link text-light" href="signIn.php">Sign In</a>
                         </li>
+
+                        <!-- Link to redirect user to Sign Up page -->
                         <li class="nav-item">
                           <a class="btn btn-primary nav-link text-light" href="signUp.php">Sign Up</a>
                         </li>
