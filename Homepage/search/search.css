@@ -1,3 +1,14 @@
+/*
+    File: /Homepage/search/search.css
+    E-Tutor
+    Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+    Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+    Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+    Last Modified: 04/26/2021
+*/
+
+/* Style the overall webpage relative to browser */
 html{
     height: 100%;
 }
@@ -10,6 +21,7 @@ li{
     display: inline-block;
 }
 
+/* Style how each result is showed */
 .result{
     display: inline-block;
     width: 100%;
@@ -25,11 +37,13 @@ li{
     border: 1px solid gray;
 }
 
+/* each result will change background when hovering */
 .result:hover{
     background-color: #EEEEEE;
     color: black;
 }
 
+/* Style the profile pic */
 .resultPic{
     margin-top: 5px;
     float: left;
@@ -45,14 +59,17 @@ li{
     font-size: 15px;
 }
 
+/* Style name of the tutor */
 .resultName{
     font-size: 30px !important;
 }
 
+/* Style subjects */
 .resultSubjects{
     margin-bottom: 5px;
 }
 
+/* Style the the message displayed when search returns no results */
 .noResults{
     display: inline-block;
     width: 100%;
@@ -74,11 +91,13 @@ li{
     margin-bottom: 30px;
 }
 
+/* Style the sort by dropdown menu */
 .dropdown-menu a{
     color: black;
     text-decoration: none;
 }
 
+/* Styles what happens when user hover over each categories */
 .dropdown-menu a:hover{
     background-color: #8c8cef;
 }

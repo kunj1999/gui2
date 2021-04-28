@@ -1,21 +1,35 @@
+<!--
+    File: /Homepage/profile/tutorProfile.php
+    E-Tutor
+    Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+    Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+    Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+    Last Modified: 04/26/2021
+-->
+
 <?php 
 
     require_once "/var/www/html/gui2/Database/sqlConn.php";
     require_once "../../Debug.php";
 
+    // If the user is not authenticated, deny entry
     session_start();
     if(!isset($_SESSION['username'])) {
         header("Location: ../../signIn.php");
         die();
     }
 
+    // Get the query string, which is a username of a tutor
     $profileUsername = $_SERVER['QUERY_STRING'];
 
+    // Get tutor's profile info and sessions
     $dataFromDb = tutorPublicProfile($profileUsername);
 
     $result = $dataFromDb[0];
     $sessions = $dataFromDb[1];
 
+    // used later in the webpage to display name and subject
     $name = $result[0][0] . " " . $result[0][1];
     $subject = $result[0][3];
 
@@ -49,8 +63,11 @@
                 <div class="header">
                     <i class="headerPic fas fa-user fa-8x"></i>
                     <div class="headerText">
+
                         <!-- Load name of the tutor -->
                         <p class="tutorName"><?php echo $name;?></p>
+
+                        <!-- General location of residence -->
                         <p> Location: (Coming Soon)</p>
                     </div>
                 </div>
@@ -58,6 +75,8 @@
 
             <div class="container" style="margin-top: -13px;">
                 <div id="profileTabs" class="p-0">
+
+                    <!-- List of tabs -->
                     <ul id="Tablist" class="pTab">
                         <li><a href="#About" class="tabs">About</a></li>
                         <li><a href="#Sessions" class="tabs">Sessions</a></li>
@@ -65,19 +84,23 @@
                     </ul>
 
                     <div id="About">
-
+                        <!-- Introduction -->
                         <h5>Introduction</h5>
                         <p style="height:50px;">Coming Soon!</p>
 
+                        <!-- Subjects -->
                         <h5>Subjects</h5>
                         <p><?php echo $subject;?></p>
 
+                        <!-- Education -->
                         <h5>Education</h5>
                         <p>Coming Soon!</p>
 
+                        <!-- Skills -->
                         <h5>Skills</h5>
                         <p style="height:50px;">Coming Soon!</p>
 
+                        <!-- Industry experience if any -->
                         <h5>Experience</h5>
                         <p>Coming Soon!</p>
 
@@ -85,6 +108,8 @@
 
                     <div id="Sessions">
                         <div class="table-responsive">
+
+                            <!-- Table to display sessions -->
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -95,7 +120,7 @@
                                 </thead>
 
                                 <tbody id='sessionsBody'>
-                                    
+                                    <!-- Rows of sessions will be added dynamically (see tutorProfile.js) -->
                                 </tbody>
                             </table>
                         </div>
@@ -108,12 +133,21 @@
                         <div class="mt-2" id="postReview">
                             <h6 class="font-weight-bold m-3 text-center">Write a Review</h6>
 
+                            <!-- Form to post review -->
                             <form class="text-center m-3" id="reviewForm">
+
+                                <!-- Input area for the user to share their experience -->
                                 <textarea name="comment" id="comment" class="col-11 m-3" rows="5" style="resize:none;" placeholder="Write about your experience!"></textarea>
+                                
+                                <!-- User can rate their experience on standard five star rating system -->
                                 <p class="mb-0">Rate your experience</p>
                                 <div class="starRating"></div>
                                 <input name="fiveRating" id="fiveRating" style="display:none;"></input>
+
+                                <!-- Tutor's username is stored here for easy access when submmiting form -->
                                 <input name="tutorUsername" id="tutorUsername" style="display:none;" value="<?php echo $profileUsername;?>"></input>
+                                
+                                <!-- Option to post their review or cancel -->
                                 <button type="submit" id="post" class="btn-primary">Post</button>
                                 <button id="cancel">Cancel</button>
                             </form>
@@ -142,11 +176,16 @@
         <script src="https://cdn.jsdelivr.net/npm/starrr@2.0.4/dist/starrr.js" integrity="sha256-B0HNmtVTpAoXTFU+NwBmyqNt03Md9vZmBpGZMenxRok=" crossorigin="anonymous"></script>
         <script src="tutorProfile.js"></script>
         <script>
+
+            // Prevent form submission on reload
             if (window.history.replaceState) {
                 window.history.replaceState(null, null, window.location.href);
             }
 
             $(document).ready(function() {
+
+                // Get the reviews and sessions
+                // Pass them to start function to start the process of displaying it to the user
                 var result = <?php echo ($result[0][2]); ?>;
                 var sessions = <?php echo json_encode($sessions); ?>;
                 start(result, sessions);

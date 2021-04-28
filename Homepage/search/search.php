@@ -1,10 +1,17 @@
+<!--
+    File: /Homepage/search/search.php
+    E-Tutor
+    Kunj Patel, UMass Lowell Computer Science, kunj_patel@student.uml.edu
+    Sean Gillis, UMass Lowell Computer Science, sean_gillis1@student.uml.edu
+    Copyright (c) 2021 Kunj Patel, Sean Gillis. All rights reserved.
+
+    Last Modified: 04/26/2021
+-->
+
 <?php 
 
     require_once '../../Debug.php';
     require_once '../../Database/sqlConn.php';
-
-    echo logConsole($_SERVER['DOCUMENT_ROOT']);
-
 
     // If the user hasn't been authenticated, deny entry to this page
     session_start();
@@ -15,6 +22,7 @@
 
     $search_result = NULL;
 
+    // If this webpage was requested via GET request, we for the keyward user passed in our DB
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         $search_result = search_keyword_in_sql($_GET['s']);
     }
@@ -49,6 +57,7 @@
                         Sort by <i class="fas fa-angle-down"></i>
                     </span>
 
+                    <!-- Sort by interface (not funtional. coming Soon!) -->
                     <div class="dropdown-menu" aria-labelledby="sortByMenu">
 
                         <a class="dropdown-item" href="#">Highest rating first</a>
@@ -69,16 +78,18 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
         <script src="search.js"></script>
         <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
+            // prevent form submission on reload
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
         </script>
 
         <script>
-        $(document).ready(function() {
-            var result = <?php echo json_encode($search_result); ?>;
-            displaySearchResult(result);
-        });
+            // Results we got from DB passed to a function to be displayed to user
+            $(document).ready(function() {
+                var result = <?php echo json_encode($search_result); ?>;
+                displaySearchResult(result);
+            });
         </script>
     </body>
 

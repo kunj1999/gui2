@@ -152,35 +152,56 @@ function createReview(reviewerName, reviewText, rating)
     return newR;
 }
 
+// @param: Array of sessions
+// @return: (none)
+// purpose: Display each available session
 function displaySessions(sessions){
+
+    // Iterate through each sessions and display it to the user
     for (i = 0; i<sessions.length; i++){
         $('#sessionsBody').append(session_row(parse_sessionTime(sessions[i])));
     }
 }
 
+// @param: Individual session
+// @return: JSON object containing subject, time and zoom link
+// purpose: 
 function parse_sessionTime(oneSession){
+
+    // Extract the subject
     var subject = oneSession[3];
 
+    // Get the start and end date for a given session
     var startDate = moment(oneSession[0]).format('L');
     var endDate = moment(oneSession[1]).format('L');
     
+    // If the sessions starts and end same day, only include the start date
     if (startDate == endDate){
         var date = startDate
     } else {
+        // If the sessions spans over multiple days include both
         var date = startDate + "-" + endDate;
     }
 
+    // Get the start and end time for a given session
     var start = moment(oneSession[0]).format('LT');
     var end = moment(oneSession[1]).format('LT');
 
+    // Return everything as json object
     return {subj: subject, dt: date, tm: start + '-' + end, zm: oneSession[2]};
 }
 
+// @param: JSON object containing subject, time and zoom link
+// @return: HTML code 
+// purpose: Given session data, function will create corresponding html code
 function session_row(data) {
     var row = $('<tr></tr>');
+
+    // Subject
     var subject = $('<td></td>');
     subject.append(data['subj']);
 
+    // Date and time
     var dateTime = $('<td></td>');
     var date = $('<div></div>').append(data['dt']);
     var time = $('<div></div>').addClass('text-secondary');
@@ -188,6 +209,7 @@ function session_row(data) {
     dateTime.append(date);
     dateTime.append(time);
 
+    // Clickable button to add particular sessions to user's own calendar
     var addtocalendar = $('<td></td>')
     var btn = $('<button></button>').addClass('btn-primary addCalendar');
     btn.attr('onclick', 'AddtoCalendar_Ajax(this)');
@@ -203,25 +225,30 @@ function session_row(data) {
 
 }
 
+// @param: Button element
+// @return: False (to avoid page reload)
+// purpose: 
 function AddtoCalendar_Ajax(ele){
-    console.log(ele);
 
+    // Extract zoom link
     var zoom = ele.attributes[2].value;
 
+    // Extract date and time
     var event_row = ele.parentNode.parentNode;
-
     var event_date = event_row.children[1].children[0].innerText;
     var event_time = event_row.children[1].children[1].innerText;
 
     event_time = event_time.split('-');
 
+    // Create form data
     var formdata = {
-        username: window.location.search.substring(1),
+        username: window.location.search.substring(1), // Username of the tutor
         startTime: event_date + " " + event_time[0],
         endTime: event_date + " " + event_time[1],
         zoomLink: zoom,
     };
 
+    // Submit the form data using AJAX POST
     $.ajax({
         type: "POST",
         url: "/Homepage/profile/session.php",
@@ -230,6 +257,7 @@ function AddtoCalendar_Ajax(ele){
         console.log(data);
     });
     
+    // Change the button to indicate the session has been added to their calendar
     ele.innerHTML = "Added";
     ele.classList.remove("btn-primary");
     ele.disabled = true;
