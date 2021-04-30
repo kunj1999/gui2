@@ -89,7 +89,7 @@
 
             <div class="container">
                 <!-- Sign up Form -->
-                <form class="signUpForm col-sm-11 text-center center p-3 rounded" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+                <form class="signUpForm col-sm-11 text-center center p-3 rounded" action="<?php echo $_SERVER['PHP_SELF']?>" method="post" id="signUp">
                     <h4 class="mt-2 mb-4 font-weight-bold">Sign Up</h4>
 
                     <!-- Error message if something goes wrong -->
@@ -125,8 +125,10 @@
                         <label class="mr-3 col-12 col-sm-2">Zoom Link</label>
                         <input type="url" class= "mt-2 mb-2 col-sm-6 signUpInputBox" name="zoomLink"><br>
 
+                        
                         <!-- Entering the schedule: Day of the week -->
                         <label class="mr-3 col-12 col-sm-3 mt-3 mb-3">Schedule</label><br>
+                        <span class="text-danger" id="timeValidation"></span><br>
                         <div class="row text-right text-sm-center col-sm-12">
                             <div class="col-sm-4 mb-2">
                                 <select class="col-10 col-sm-10 signUpInputBox h-100" id="day" name="day">
@@ -140,12 +142,12 @@
 
                             <!-- Input start time -->
                             <div class="col-sm-4 mb-2">
-                                <label class="mr-1">start</label><input type="time" class= "col-10 col-sm-8 signUpInputBox" name="startTime">
+                                <label class="mr-1">start</label><input type="time" class= "col-10 col-sm-8 signUpInputBox" name="startTime" id="startTime">
                             </div>
 
                             <!-- Input end time -->
                             <div class="col-sm-4 mb-2">
-                                <label class="mr-1">end</label><input type="time" class= "col-10 col-sm-8 signUpInputBox" name="endTime"><br>
+                                <label class="mr-1">end</label><input type="time" class= "col-10 col-sm-8 signUpInputBox" name="endTime" id="endTime"><br>
                             </div>
                         </div>
 

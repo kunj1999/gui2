@@ -23,4 +23,17 @@ $(document).ready(function()
         }
     });
 
+    $("#signUp").submit( function(e) {
+        var start = $("#startTime").val();
+        var end = $("#endTime").val();
+
+        $("#timeValidation").empty();
+
+        if (start > end) {
+            console.log(end-start);
+            $("#timeValidation").append('Start time must come before end time');
+            e.preventDefault();
+        }
+    });
+
 });
