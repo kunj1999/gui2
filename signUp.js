@@ -30,8 +30,15 @@ $(document).ready(function()
         $("#timeValidation").empty();
 
         if (start > end) {
-            console.log(end-start);
             $("#timeValidation").append('Start time must come before end time');
+            e.preventDefault();
+        }
+
+        var password = $("#password").val();
+
+        if (password.length < 8) {
+            $("#displayError").empty();
+            $("#displayError").append("Password must be at least 8 characters!");
             e.preventDefault();
         }
     });

@@ -93,7 +93,7 @@
                     <h4 class="mt-2 mb-4 font-weight-bold">Sign Up</h4>
 
                     <!-- Error message if something goes wrong -->
-                    <span class="text-danger"><?php echo $err; ?></span> <br>
+                    <span class="text-danger" id="displayError"><?php echo $err; ?></span> <br>
 
                     <!-- Input boxes for first and last name -->
                     <label class= "mr-3 col-12 col-sm-2">Name</label>
@@ -106,7 +106,7 @@
 
                     <!-- Password -->
                     <label class= "mr-3 col-12 col-sm-2">Password</label>
-                    <input type="password" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="password" placeholder="Password" required><br>
+                    <input type="password" class="mt-2 mb-2 col-sm-6 signUpInputBox" name="password" id="password" placeholder="Password" required><br>
 
                     <!-- Radio button for selecting if a person signing up is a tutor -->
                     <div class="mt-3 mb-3">
